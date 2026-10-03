@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Expense Tracker</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-wallet2"></i>
+        <span data-en="Expense Tracker" data-ar="متتبع المصاريف">Expense Tracker</span>
+      </a>
+
+      <div class="d-flex align-items-center gap-2 navbar-actions">
+
+        <button class="btn btn-icon" id="languageButton" type="button">
+          <i class="bi bi-translate"></i>
+          <span>AR</span>
+        </button>
+
+        <button class="btn btn-icon" id="themeButton" type="button">
+          <i class="bi bi-moon"></i>
+        </button>
+
+        <a href="#add-expense" class="btn btn-primary">
+          <i class="bi bi-plus-lg"></i>
+          <span data-en="Add Expense" data-ar="إضافة مصروف">Add Expense</span>
+        </a>
+
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- Hero section -->
+  <main>
+
+    <section class="hero-wrapper">
+      <div class="container">
+
+        <div class="hero-section">
+
+          <div class="hero-content">
+
+            <span class="badge rounded-pill mb-3">
+              <i class="bi bi-bar-chart-line"></i>
+              <span data-en="Expense Dashboard" data-ar="لوحة التحكم بالمصاريف">
+                Expense Dashboard
+              </span>
+            </span>
+
+            <h1 data-en="Track your expenses with clarity."
+                data-ar="تابع مصاريفك بكل وضوح.">
+              Track your expenses with clarity.
+            </h1>
+
+            <p data-en="Keep your spending organized, understand your habits, and stay in control of your money."
+               data-ar="نظّم مصاريفك، افهم عادات الإنفاق لديك، وحافظ على السيطرة على أموالك.">
+              Keep your spending organized, understand your habits,
+              and stay in control of your money.
+            </p>
+
+          </div>
+
+          <div class="hero-decoration">
+            <i class="bi bi-wallet2"></i>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Dashboard section -->
+    <section class="dashboard-section container">
+
+      <!-- Summary cards -->
+      <section class="summary-section">
+
+        <div class="section-heading">
+          <div>
+            <span class="section-label"
+                  data-en="Overview"
+                  data-ar="نظرة عامة">
+              Overview
+            </span>
+
+            <h2 data-en="Your spending at a glance"
+                data-ar="ملخص مصاريفك">
+              Your spending at a glance
+            </h2>
+          </div>
+        </div>
+
+
+        <div class="summary-grid">
+
+          
+            <div class="summary-card">
+
+              <div class="summary-icon">
+                <i class="bi bi-cash-stack"></i>
+              </div>
+
+              <div class="summary-content">
+                <p data-en="Total Amount" data-ar="إجمالي المبلغ">
+                  Total Amount
+                </p>
+
+                <h2 id="totalAmount">$0.00</h2>
+              </div>
+
+            </div>
+          
+
+
+          
+            <div class="summary-card">
+
+              <div class="summary-icon">
+                <i class="bi bi-receipt"></i>
+              </div>
+
+              <div class="summary-content">
+                <p data-en="Number of Expenses"
+                   data-ar="عدد المصاريف">
+                  Number of Expenses
+                </p>
+
+                <h2 id="totalExpenses">0</h2>
+              </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+              <div class="summary-icon">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+
+              <div class="summary-content">
+                <p data-en="Highest Expense"
+                   data-ar="أعلى مصروف">
+                  Highest Expense
+                </p>
+
+                <h2 id="highestExpense">$0.00</h2>
+              </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+              <div class="summary-icon">
+                <i class="bi bi-calculator"></i>
+              </div>
+
+              <div class="summary-content">
+                <p data-en="Average Expense"
+                   data-ar="متوسط المصروف">
+                  Average Expense
+                </p>
+
+                <h2 id="averageAmount">$0.00</h2>
+              </div>
+
+            </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Charts -->
+      <section class="charts-section">
+
+        <div class="section-heading">
+          <div>
+            <span class="section-label"
+                  data-en="Analytics"
+                  data-ar="التحليلات">
+              Analytics
+            </span>
+
+            <h2 data-en="Understand your spending"
+                data-ar="افهم طريقة إنفاقك">
+              Understand your spending
+            </h2>
+
+            <p data-en="Visualize your expenses and spot spending patterns."
+               data-ar="شاهد مصاريفك بصريًا وتعرّف على أنماط إنفاقك.">
+              Visualize your expenses and spot spending patterns.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="row g-4">
+
+          <div class="col-lg-8">
+            <div class="chart-card">
+
+              <div class="chart-card-header">
+                <div>
+                  <h3 data-en="Monthly Spending"
+                      data-ar="الإنفاق الشهري">
+                    Monthly Spending
+                  </h3>
+
+                  <p data-en="Total spending by month"
+                     data-ar="إجمالي الإنفاق حسب الشهر">
+                    Total spending by month
+                  </p>
+                </div>
+
+                <div class="chart-icon">
+                  <i class="bi bi-bar-chart"></i>
+                </div>
+              </div>
+
+              <div class="chart-container">
+                <canvas id="monthlyChart"></canvas>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="col-lg-4">
+            <div class="chart-card">
+
+              <div class="chart-card-header">
+                <div>
+                  <h3 data-en="By Category"
+                      data-ar="حسب الفئة">
+                    By Category
+                  </h3>
+
+                  <p data-en="Spending distribution"
+                     data-ar="توزيع الإنفاق">
+                    Spending distribution
+                  </p>
+                </div>
+
+                <div class="chart-icon">
+                  <i class="bi bi-pie-chart"></i>
+                </div>
+              </div>
+
+              <div class="chart-container chart-container-small">
+                <canvas id="categoryChart"></canvas>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Add expense form -->
+      <section class="expense-form-section" id="add-expense">
+
+        <div class="section-heading">
+          <div>
+            <span class="section-label"
+                  data-en="New Expense"
+                  data-ar="مصروف جديد">
+              New Expense
+            </span>
+
+            <h2 data-en="Add an expense"
+                data-ar="إضافة مصروف">
+              Add an expense
+            </h2>
+
+            <p data-en="Record a new expense and keep your spending up to date."
+               data-ar="سجّل مصروفًا جديدًا وحافظ على تحديث بيانات إنفاقك.">
+              Record a new expense and keep your spending up to date.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="expense-form-card">
+
+          <form id="expenseForm">
+
+            <div class="row g-4">
+
+              <div class="col-md-6">
+                <label for="title" class="form-label"
+                       data-en="Title"
+                       data-ar="العنوان">
+                  Title
+                </label>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  name="title"
+                  placeholder="e.g. Groceries"
+                  required
+                >
+              </div>
+
+
+              <div class="col-md-6">
+                <label for="amount" class="form-label"
+                       data-en="Amount"
+                       data-ar="المبلغ">
+                  Amount
+                </label>
+
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="amount"
+                    name="amount"
+                    placeholder="0.00"
+                    min="0.01"
+                    step="0.01"
+                    required
+                  >
+                </div>
+              </div>
+
+
+              <div class="col-md-6">
+                <label for="category" class="form-label"
+                       data-en="Category"
+                       data-ar="الفئة">
+                  Category
+                </label>
+
+                <select
+                  class="form-select"
+                  id="category"
+                  name="category"
+                  required
+                >
+                  <option value="">Select category</option>
+                  <option value="Food">Food</option>
+                  <option value="Transport">Transport</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Other">Other</option>
+                </select>
+</div>
+
+
+              <div class="col-md-6">
+                <label for="date" class="form-label"
+                       data-en="Date"
+                       data-ar="التاريخ">
+                  Date
+                </label>
+
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date"
+                  name="date"
+                  required
+                >
+              </div>
+
+
+              <div class="col-12">
+                <div class="form-actions">
+
+                  <button type="reset" class="btn btn-light">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <span data-en="Clear" data-ar="مسح">Clear</span>
+                  </button>
+
+                  <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-plus-lg"></i>
+                    <span data-en="Add Expense" data-ar="إضافة مصروف">
+                      Add Expense
+                    </span>
+                  </button>
+
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </section>
+
+
+      <!-- Expenses section -->
+      <section class="expenses-section">
+
+        <div class="section-heading">
+          <div>
+            <span class="section-label"
+                  data-en="Transactions"
+                  data-ar="المعاملات">
+              Transactions
+            </span>
+
+            <h2 data-en="Your expenses"
+                data-ar="مصاريفك">
+              Your expenses
+            </h2>
+
+            <p data-en="Search, filter, sort, and manage your expenses."
+               data-ar="ابحث عن مصاريفك، صفِّها، رتّبها وأدرها بسهولة.">
+              Search, filter, sort, and manage your expenses.
+            </p>
+          </div>
+
+          <button type="button" class="btn btn-light" id="exportCsvButton">
+            <i class="bi bi-file-earmark-spreadsheet"></i>
+            <span data-en="Export CSV" data-ar="تصدير CSV">Export CSV</span>
+          </button>
+        </div>
+
+
+        <!-- Filters -->
+        <div class="filters-card">
+
+          <div class="row g-3">
+
+            <div class="col-lg-3">
+              <label for="searchInput" class="form-label"
+                     data-en="Search"
+                     data-ar="بحث">
+                Search
+              </label>
+
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-search"></i>
+                </span>
+
+                <input
+                  type="search"
+                  class="form-control"
+                  id="searchInput"
+                  placeholder="Search expenses..."
+                >
+              </div>
+            </div>
+
+
+            <div class="col-md-12 col-lg-3">
+              <label for="categoryFilter" class="form-label"
+                     data-en="Category"
+                     data-ar="الفئة">
+                Category
+              </label>
+
+              <select class="form-select" id="categoryFilter">
+                <option value="">All categories</option>
+              </select>
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+              <label for="fromDate" class="form-label"
+                     data-en="From"
+                     data-ar="من">
+                From
+              </label>
+
+              <input
+                type="date"
+                class="form-control"
+                id="fromDate"
+              >
+            </div>
+
+
+            <div class="col-md-6 col-lg-3">
+              <label for="toDate" class="form-label"
+                     data-en="To"
+                     data-ar="إلى">
+                To
+              </label>
+
+              <input
+                type="date"
+                class="form-control"
+                id="toDate"
+              >
+            </div>
+
+
+
+
+            <button type="button" class="btn btn-light" id="clearFiltersButton">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <span data-en="Clear" data-ar="مسح">Clear</span>
+                  </button>
+
+          </div>
+
+        </div>
+
+        <!-- Error message -->
+        <div class="alert alert-danger alert-dismissible fade show d-none"
+            id="appAlert"
+            role="alert"
+            aria-live="assertive">
+
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <span id="appAlertMessage"></span>
+
+            <button type="button"
+                    class="btn-close"
+                    aria-label="Close"
+                    onclick="hideAppAlert()">
+            </button>
+        </div>
+
+        <!-- Expenses table -->
+        <div class="expenses-table-card">
+
+          <div class="table-responsive">
+
+            <table class="table align-middle" id="expensesTable">
+
+              <thead>
+                <tr>
+                  <th data-en="Title" data-ar="العنوان">Title</th>
+                  <th class="sortable-header" data-sort-field="amount" data-en="Amount" data-ar="المبلغ">Amount</th>
+                  <th data-en="Category" data-ar="الفئة">Category</th>
+                  <th class="sortable-header" data-sort-field="date" data-en="Date" data-ar="التاريخ">Date</th>
+                  <th class="text-end"
+                      data-en="Actions"
+                      data-ar="الإجراءات">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody id="expensesTableBody">
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+          <!-- Loading state -->
+          <div class="table-state d-none" id="loadingState">
+
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+
+            <p data-en="Loading expenses..."
+               data-ar="جاري تحميل المصاريف...">
+              Loading expenses...
+            </p>
+
+          </div>
+
+
+          <!-- Empty state -->
+          <div class="table-state d-none" id="emptyState">
+
+            <div class="empty-icon">
+              <i class="bi bi-receipt"></i>
+            </div>
+
+            <h3 data-en="No expenses found"
+                data-ar="لا توجد مصاريف">
+              No expenses found
+            </h3>
+
+            <p data-en="Try changing your filters or add a new expense."
+               data-ar="جرّب تغيير الفلاتر أو أضف مصروفًا جديدًا.">
+              Try changing your filters or add a new expense.
+            </p>
+
+          </div>
+
+
+          <!-- Pagination -->
+          <div class="pagination-wrapper">
+
+            <div class="pagination-info" id="paginationInfo">
+              Showing 0 expenses
+            </div>
+
+            <nav>
+              <ul class="pagination mb-0" id="pagination">
+              </ul>
+            </nav>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <!-- Edit expense modal -->
+  <div class="modal fade" id="editExpenseModal" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title"
+              data-en="Edit Expense"
+              data-ar="تعديل المصروف">
+            Edit Expense
+          </h5>
+
+          <button type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal">
+          </button>
+        </div>
+
+
+        <div class="modal-body">
+
+          <form id="editExpenseForm">
+
+            <input type="hidden" id="editExpenseId">
+
+            <div class="mb-3">
+              <label for="editTitle" class="form-label" data-en="Title" data-ar="العنوان">Title</label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="editTitle"
+                required
+              >
+            </div>
+
+
+            <div class="mb-3">
+              <label for="editAmount" class="form-label" data-en="Amount" data-ar="المبلغ">Amount</label>
+
+              <input
+                type="number"
+                class="form-control"
+                id="editAmount"
+                min="0.01"
+                step="0.01"
+                required
+              >
+            </div>
+
+
+            <div class="mb-3">
+              <label for="editCategory" class="form-label" data-en="Category" data-ar="الفئة">Category</label>
+
+              <select class="form-select" id="editCategory" required>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Bills">Bills</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="editDate" class="form-label" data-en="Date" data-ar="التاريخ">Date</label>
+
+              <input
+                type="date"
+                class="form-control"
+                id="editDate"
+                required
+              >
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button type="button"
+                  class="btn btn-light"
+                  data-bs-dismiss="modal">
+            <span data-en="Cancel" data-ar="إلغاء">Cancel</span>
+          </button>
+
+          <button type="submit"
+                  form="editExpenseForm"
+                  class="btn btn-primary">
+            <span data-en="Save Changes" data-ar="حفظ التغييرات">Save Changes</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+
+  <!-- JavaScript files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
